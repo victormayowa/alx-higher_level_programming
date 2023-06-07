@@ -1,0 +1,14 @@
+#!/bin/bash
+
+pyfile="$PYFILE"
+pycfile="${pyfile}c"
+
+echo "Compiling $pyfile ..."
+python3 -m compileall "$pyfile" > /dev/null 2>&1
+
+if [ -f "$pycfile" ]; then
+    echo "$pycfile created successfully."
+else
+    echo "Failed to compile $pyfile."
+fi
+
