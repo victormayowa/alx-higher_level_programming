@@ -12,7 +12,7 @@ if __name__ == "__main__":
             byte = file.read(1)
             if byte == b'':
                 break
-            size = int.from_bytes(byte, byteorder='little')  # Get the size of the name
+            size = int.from_bytes(byte, byteorder='little')
             name = file.read(size).decode()  # Read the name
             if not name.startswith("__"):
                 names.append(name)
