@@ -12,14 +12,15 @@ void print_python_list(PyObject *p)
 
 	size = PyList_Size(p);
 	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %zd\n", size);
+	printf("[*] Size of the Python List = %ld\n", size);
 	list = (PyListObject *)p;
 	printf("[*] Allocated = %zd\n", list->allocated);
 	for (i = 0; i < size; i++)
 	{
-		printf("Element %zd: %s\n", i, Py_TYPE(PyList_GetItem(p, i))->tp_name);
-		if (strcmp(Py_TYPE(PyList_GetItem(p, i))->tp_name, "bytes") == 0)
-			print_python_bytes(PyList_GetItem(p, i));
+		PyObject *item = PyList_GetItem(p, i);
+		const char *type = Py_TYPE(item)->tp_name;
+
+		printf("Element %ld: %s\n", i, type);
 	}
 }
 
@@ -40,10 +41,14 @@ void print_python_bytes(PyObject *p)
 	}
 	size = PyBytes_Size(p);
 	string = PyBytes_AsString(p);
-	printf("  size: %zd\n", size);
+	printf("  size: %ld\n", size);
 	printf("  trying string: %s\n", string);
-	printf("  first %zd bytes:", (size + 1 < 10) ? size + 1 : 10);
-	for (i = 0; i < size + 1 && i < 10; i++)
-		printf(" %02x", string[i] & 0xff);
+	printf("  first %ld bytes:", (size > 10 ? 10 : 10));
+	for (i = 0; i < (size > 10 ? 10 : size); i++)
+	{
+		printf(" %02x", (unsigned char)bytes->ob_sval[i]);
+		if (i < 9)
+			printf(" ");
+	}
 	printf("\n");
 }
