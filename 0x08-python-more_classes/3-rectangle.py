@@ -83,4 +83,27 @@ class Rectangle:
         Returns:
             int: The perimeter of the rectangle.
         """
+        if self.__width == 0 or self.__height == 0:
+            return 0
         return 2 * (self.__width + self.__height)
+
+    def __str__(self):
+        """
+        Returns a string representation of the rectangle.
+        Returns:
+            str: The rectangle represented using '#'.
+        """
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        rectangle_str = ""
+        for _ in range(self.__height):
+            rectangle_str += "#" * self.__width + "\n"
+        return rectangle_str[:-1]
+
+    def __repr__(self):
+        """
+        Returns a string representation of the rectangle object.
+        Returns:
+            str: The string representation of the rectangle object.
+        """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
