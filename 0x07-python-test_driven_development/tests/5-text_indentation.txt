@@ -1,0 +1,23 @@
+>>> from text_indentation import text_indentation
+
+>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
+Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
+Plus semper voluptatis?")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Quonam modo?
+
+Utrum igitur tibi litteram videor an totas paginas commovere?
+
+Non autem hoc:
+igitur ne illud quidem.
+
+Fortasse id optimum, sed ubi illud:
+Plus semper voluptatis?
+
+>>> try:
+...     text_indentation(123)
+... except Exception as e:
+...     print(e)
+text must be a string
