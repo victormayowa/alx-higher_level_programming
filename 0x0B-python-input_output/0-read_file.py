@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+''' read conetnt of file '''
+
 
 def read_file(filename=""):
     '''
