@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+'''
+append to the file
+'''
+
 
 def append_write(filename="", text=""):
     '''
