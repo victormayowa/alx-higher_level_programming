@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 ''' save the json object in a file withe name as filename '''
+
+
 import json
 '''
 import json
 create a function with styled name
 '''
+
+
 def save_to_json_file(my_obj, filename):
     """
     Writes an object to a text file using a JSON representation.

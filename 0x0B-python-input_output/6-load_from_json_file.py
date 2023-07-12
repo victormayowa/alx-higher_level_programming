@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 ''' load json file in read mode and stores it'''
+
+
 import json
 ''' import json'''
+
+
 def load_from_json_file(filename):
     """
     Creates an object from a JSON file.
