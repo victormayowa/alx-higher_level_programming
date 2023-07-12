@@ -10,11 +10,7 @@ def append_write(filename="", text=""):
     Returns:
         int: Number of characters added to the file
     '''
-    if not isinstance(filename, str):
-        raise TypeError("filename must be a string")
-
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
 
     with open(filename, "a", encoding="utf-8") as file:
-        return file.write(text)
+        char = file.write(text)
+        return char

@@ -12,11 +12,6 @@ def write_file(filename="", text=""):
         int: Number of characters written to the file
     '''
 
-    if not isinstance(filename, str):
-        raise TypeError("filename must be a string")
-
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
-
-    with open(filename, "w", encoding="utf-8") as file:
-        return file.write(text)
+    with open(filename, mode = "w", encoding="utf-8") as file:
+        char = file.write(text)
+        return char

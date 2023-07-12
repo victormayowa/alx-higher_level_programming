@@ -10,9 +10,6 @@ def read_file(filename=""):
     Returns:
         None
     '''
-
-    if not isinstance(filename, str):
-        raise TypeError("filename must be a string")
-
     with open(filename, "r") as file:
-        print(file.read(), end='')
+        r = file.read()
+        print(r, end='')
