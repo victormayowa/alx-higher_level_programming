@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Module containing the Rectangle class"""
 
-
 from models.base import Base
 
 class Rectangle(Base):
@@ -74,3 +73,8 @@ class Rectangle(Base):
     def area(self):
         """Calculates the area of the rectangle"""
         return self.width * self.height
+
+    def display(self):
+        """Displays the rectangle with '#' characters"""
+        for _ in range(self.height):
+            print('#' * self.width)
