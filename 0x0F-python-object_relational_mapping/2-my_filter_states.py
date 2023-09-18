@@ -30,7 +30,7 @@ def filter_states():
     # Execute the query to get states with the specified name
     cursor.execute("""SELECT * FROM states
                       WHERE states.name LIKE BINARY '{}'
-                      ORDER BY states.id"""".format(state""")
+                      ORDER BY states.id""".format(state))
 
     # Fetch and print the results
     for row in cursor.fetchall():
