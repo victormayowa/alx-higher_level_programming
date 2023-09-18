@@ -2,9 +2,9 @@
 """
 Script to list all states with a name starting with 'N'
 """
-
 import MySQLdb
 import sys
+
 
 def filter_states():
     """
@@ -35,6 +35,7 @@ def filter_states():
     # Close cursor and connection
     cursor.close()
     conn.close()
+
 
 if __name__ == "__main__":
     filter_states()
