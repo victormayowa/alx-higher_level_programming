@@ -1,36 +1,21 @@
 #!/usr/bin/python3
-""" scripting of select statement"""
+"""script to select all entries from the states table from a db
+passed as an argument"""
+from sys import argv as sysargv
+import MySQLdb as sqldb
 
-if __name__ == "__main__"
 
-    import MySQLdb
-    import sys
+def get_states():
+    """selects all states from the database"""
+    script, user, passwd, db_name = sysargv
+    db = sqldb.connect(host='localhost', port=3306,
+                       user=user, passwd=passwd, db=db_name)
+    c = db.cursor()
+    c.execute("""SELECT * FROM states ORDER BY states.id""")
+    states = c.fetchall()
+    for state in states:
+        print(state)
 
-    # Take command line arguments
-    mysql_user = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
 
-    # Connect to MySQL server
-    conn = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=mysql_user,
-        passwd=mysql_password,
-        db=database_name
-    )
-
-    # Create a cursor object
-    cursor = conn.cursor()
-
-    # Execute the query to get all states
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-
-    # Fetch and print the results
-    for row in cursor.fetchall():
-        print(row)
-
-    # Close cursor and connection
-    cursor.close()
-    conn.close()
-
+if __name__ == "__main__":
+    get_states()
