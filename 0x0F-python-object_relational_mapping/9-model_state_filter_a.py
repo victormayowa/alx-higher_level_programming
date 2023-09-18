@@ -21,7 +21,7 @@ def filter_states_with_a():
     conn = 'mysql+mysqldb://{}:{}@localhost/{}'.format(mysql_user,
                                                        mysql_password,
                                                        database_name)
-    engine = create_engine(conn, pool_pre_ping=True)
+    engine = create_engine(conn)
     Session = sessionmaker(bind=engine)
     session = Session()
 
