@@ -27,13 +27,12 @@ def filter_states():
     )
 
     cursor = conn.cursor()
-
     # Execute the query to get states with the specified name
-    cursor.execute("SELECT *\
-                    FROM states\
-                    WHERE states.name LIKE BINARY '{}'\
-                    ORDER BY states.id".format(state))
-
+    quare = "SELECT *\
+             FROM states\
+             WHERE states.name LIKE BINARY '{}'\
+             ORDER BY states.id".format(state)
+    cursor.execute(quare)
     # Fetch and print the results
     for row in cursor.fetchall():
         print(row)
