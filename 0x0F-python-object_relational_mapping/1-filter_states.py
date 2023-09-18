@@ -23,15 +23,17 @@ def filter_states():
     cursor = conn.cursor()
 
     # Execute the query to get states starting with 'N'
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    cursor.execute("""SELECT * FROM states 
+                    WHERE (states.name LIKE BINARY 'N%') 
+                    ORDER BY states.id ASC""")
 
     # Fetch and print the results
     for row in cursor.fetchall():
         print(row)
 
     # Close cursor and connection
-    #cursor.close()
-    #conn.close()
+    cursor.close()
+    conn.close()
 
 
 if __name__ == "__main__":
