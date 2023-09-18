@@ -4,14 +4,14 @@ Script to list all states with a specific name
 """
 
 import MySQLdb
-import sys
+from sys import argv
 
 
 def filter_states():
     """
     Lists all states with a specific name
     """
-    script, mysql_user, mysql_password, database_name, state_name = sys.argv
+    script, mysql_user, mysql_password, database_name, state_name = argv
 
     # Connect to MySQL server
     conn = MySQLdb.connect(
@@ -26,7 +26,7 @@ def filter_states():
     # Execute the query to get states with the specified name
     quare = "SELECT * FROM states\
              WHERE states.name LIKE BINARY '{}'\
-             ORDER BY states.id".format(state)
+             ORDER BY states.id".format(state_name)
     cursor.execute(quare)
     # Fetch and print the results
     for row in cursor.fetchall():
