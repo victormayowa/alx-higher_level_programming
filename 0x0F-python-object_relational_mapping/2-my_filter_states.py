@@ -11,6 +11,7 @@ def filter_states():
     """
     Lists all states with a specific name
     """
+    script = sys.argv[0]
     mysql_user = sys.argv[1]
     mysql_password = sys.argv[2]
     database_name = sys.argv[3]
@@ -28,9 +29,10 @@ def filter_states():
     cursor = conn.cursor()
 
     # Execute the query to get states with the specified name
-    cursor.execute("SELECT * FROM states\
-                      WHERE states.name LIKE BINARY '{}'\
-                      ORDER BY states.id".format(state))
+    cursor.execute("SELECT *\
+                    FROM states\
+                    WHERE states.name LIKE BINARY '{}'\
+                    ORDER BY states.id".format(state))
 
     # Fetch and print the results
     for row in cursor.fetchall():
