@@ -48,4 +48,3 @@ def filter_cities():
 
 if __name__ == "__main__":
     filter_cities()
-
