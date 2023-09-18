@@ -30,8 +30,8 @@ def filter_states():
         print(row)
 
     # Close cursor and connection
-    cursor.close()
-    conn.close()
+    #cursor.close()
+    #conn.close()
 
 
 if __name__ == "__main__":
