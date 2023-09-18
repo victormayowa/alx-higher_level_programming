@@ -1,16 +1,21 @@
 #!/usr/bin/python3
 """
-Script to list all states with a name starting with 'N'
+Script to list all states with a specific name
 """
+
 import MySQLdb
-from sys import argv
+import sys
 
 
 def filter_states():
     """
-    Lists all states with names starting with 'N'
+    Lists all states with a specific name
     """
-    script, mysql_user, mysql_password, database_name = argv
+    mysql_user = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
+
     # Connect to MySQL server
     conn = MySQLdb.connect(
         host="localhost",
@@ -22,10 +27,10 @@ def filter_states():
 
     cursor = conn.cursor()
 
-    # Execute the query to get states starting with 'N'
+    # Execute the query to get states with the specified name
     cursor.execute("""SELECT * FROM states
-                    WHERE (states.name LIKE BINARY 'N%')
-                    ORDER BY states.id ASC""")
+                      WHERE name=%s
+                      ORDER BY id ASC", (state_name,)""")
 
     # Fetch and print the results
     for row in cursor.fetchall():
