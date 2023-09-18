@@ -3,17 +3,14 @@
 Script to list all states with a name starting with 'N'
 """
 import MySQLdb
-import sys
+from sys import argv
 
 
 def filter_states():
     """
     Lists all states with names starting with 'N'
     """
-    mysql_user = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
-
+    script, mysql_user, mysql_password, database_name = argv
     # Connect to MySQL server
     conn = MySQLdb.connect(
         host="localhost",
