@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-Script that lists all State objects, and corresponding City objects,
-contained in the database hbtn_0e_101_usa
+Script that lists all City objects from the database hbtn_0e_101_usa
 """
 
 import sys
@@ -11,9 +10,9 @@ from relationship_state import Base, State
 from relationship_city import City
 
 
-def list_states_cities():
+def list_cities_states():
     """
-    Lists all State objects and corresponding City objects
+    Lists all City objects with corresponding State objects
     """
     mysql_user = sys.argv[1]
     mysql_password = sys.argv[2]
@@ -29,18 +28,16 @@ def list_states_cities():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Query for State objects and their associated cities
-    states = session.query(State).order_by(State.id).all()
+    # Query for City objects and their associated states
+    cities = session.query(City).order_by(City.id).all()
 
-    # Loop through states and cities
-    for i, state in enumerate(states):
-        print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
-            print("\t{}: {}".format(city.id, city.name))
+    # Loop through cities and print details
+    for city in cities:
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
 
     # Close session
     session.close()
 
 
 if __name__ == "__main__":
-    list_states_cities()
+    list_cities_states()
