@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''this is to fetch data from a url'''
 import urllib.request
 
 
