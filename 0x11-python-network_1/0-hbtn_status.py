@@ -12,9 +12,9 @@ def status_code():
         content = response.read()
         # Print information about the response
         print("Body response:")
-        print("    - type: {}".format(type(content)))  # Print type of content
-        print("    - content: {}".format(content))  # Print the raw content
-        print("    - utf8 content: {}".format(content.decode('utf-8')))
+        print("\t- type: {}".format(type(content)))  # Print type of content
+        print("\t- content: {}".format(content))  # Print the raw content
+        print("\t- utf8 content: {}".format(content.decode('utf-8')))
 
 
 if __name__ == "__main__":
