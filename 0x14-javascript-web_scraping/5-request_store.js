@@ -3,20 +3,17 @@ const request = require('request');
 const fs = require('fs');
 
 const url = process.argv[2];
-const filePath = process.argv[3];
-
+const file = process.argv[3];
 request.get(url, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  } else if (response.statusCode === 200) {
-    fs.writeFile(filePath, body, 'utf-8', (writeError) => {
-      if (writeError) {
-        console.error(writeError);
-      } else {
-        console.log(`Content written to ${filePath}`);
-      }
+  if (error) console.log(error);
+  fs.open(file, 'w', (error, fd) => {
+    if (error) console.log(error);
+    fs.write(fd, body, 'utf8', (error) => {
+      if (error) console.log(error);
     });
-  } else {
-    console.error(`Error: ${response.statusCode}`);
-  }
+
+    fs.close(fd, (error) => {
+      if (error) console.log(error);
+    });
+  });
 });
