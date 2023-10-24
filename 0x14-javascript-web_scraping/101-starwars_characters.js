@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!usr/bin/node
 const request = require('request');
 
 const movieId = process.argv[2];
@@ -11,16 +11,16 @@ request.get(url, (error, response, body) => {
     const movieData = JSON.parse(body);
     const characterUrls = movieData.characters;
 
-    function getCharacterName (url) {
+    function getCharacterName(url) {
       return new Promise((resolve, reject) => {
         request.get(url, (error, response, body) => {
           if (error) {
-            reject(error);
+            reject(new Error(error));
           } else if (response.statusCode === 200) {
             const characterData = JSON.parse(body);
             resolve(characterData.name);
           } else {
-            reject(`Error: ${response.statusCode}`);
+            reject(new Error(`Error: ${response.statusCode}`));
           }
         });
       });
@@ -32,7 +32,7 @@ request.get(url, (error, response, body) => {
       .then(characterNames => {
         characterNames.forEach(name => console.log(name));
       })
-      .catch(error => console.error(error));
+      .catch(error => console.error(error.message));
   } else {
     console.error(`Error: ${response.statusCode}`);
   }
